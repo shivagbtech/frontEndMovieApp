@@ -1,33 +1,49 @@
-import React, { useState } from 'react';
-import { addMovieApi } from '../../../utils/api/movies/addMovieApi';
+import React, { useState } from "react";
+import { addMovieApi } from "../../../utils/api/movies/addMovieApi";
 
-export const Dashboard = (props) => {
+import "./dashboard.css";
+import { useNavigate } from "react-router-dom";
 
-  const [movie,setMovie]=useState({title:'',description:'',rating:'',thumbnail:'',trailer:'',category:''})
+export const AddMovie = (props) => {
 
-  const handleMovieCredentialChange=(event)=>{
+  const navigate=useNavigate()
+  const [movie, setMovie] = useState({
+    title: "",
+    description: "",
+    rating: "",
+    thumbnail: "",
+    trailer: "",
+    category: "",
+  });
+
+  const handleMovieCredentialChange = (event) => {
     event.preventDefault();
 
-    const {name,value}=event.target;
-    setMovie({...movie,[name]:value})
-  // console.log(movie);
-  }
+    const { name, value } = event.target;
+    setMovie({ ...movie, [name]: value });
+    // console.log(movie);
+  };
 
-  const handleAddMovieClick= (event)=>{
+  const handleAddMovieClick = (event) => {
     event.preventDefault();
 
-    const addedMovie=addMovieApi(movie);
+    const addedMovie = addMovieApi(movie);
     console.log("addedMovie", addedMovie);
 
-  }
-  let isLogin=localStorage.getItem('isLogin')==='true'?true:false;
+    if (addedMovie !== null) {
+      alert("movie added successfully");
+      navigate('/admin-panel')
+
+    }
+  };
+  let isLogin = localStorage.getItem("isLogin") === "true" ? true : false;
   return (
     <>
       {isLogin && (
-        <div>
+        <div className="main-dashboard">
           <h3>DashBoard</h3>
           <form onSubmit={handleAddMovieClick}>
-            <div>
+            <div className="form-label" id="form-label">
               <label>Title</label>
               <br></br>
               <input
@@ -39,7 +55,7 @@ export const Dashboard = (props) => {
                 required
               />
             </div>
-            <div>
+            <div className="form-label" id="form-label">
               <label>description</label>
               <br></br>
               <input
@@ -51,7 +67,7 @@ export const Dashboard = (props) => {
                 required
               />
             </div>
-            <div>
+            <div className="form-label" id="form-label">
               <label>thumbnail</label>
               <br></br>
               <input
@@ -63,7 +79,7 @@ export const Dashboard = (props) => {
                 required
               />
             </div>
-            <div>
+            <div className="form-label" id="form-label">
               <label>trailer</label>
               <br></br>
               <input
@@ -75,7 +91,7 @@ export const Dashboard = (props) => {
                 required
               />
             </div>
-            <div>
+            <div className="form-label" id="form-label">
               <label>category</label>
               <br></br>
               <input
@@ -87,7 +103,7 @@ export const Dashboard = (props) => {
                 required
               />
             </div>
-            <div>
+            <div className="form-label" id="form-label">
               <label>Rating</label>
               <br></br>
               <input
@@ -101,12 +117,12 @@ export const Dashboard = (props) => {
                 required
               />
             </div>
-            <button type="submit">Add Movie</button>
+            <button type="submit" className="add-movie-btn">
+              Add Movie
+            </button>
           </form>
         </div>
       )}
     </>
   );
-}
-
-
+};

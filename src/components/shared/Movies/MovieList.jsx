@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+// import { Card } from "react-bootstrap";
 
 import {getAllMoviesApi} from "../../../utils/api/movies/getAllMoviesApi";
-import { MovieCard } from "../MovieCard";
+import MovieCard  from "../MovieCard";
+
+import './movieList.css'
 
 export const MovieList = () => {
 
@@ -21,7 +23,7 @@ export const MovieList = () => {
     setCall(!fetchMovieCall)
   }
   return (
-    <div>
+    <div className="main-movie-list">
       {movies.map((movie) => {
         return <MovieCard key={movie._id} handleFetch={handleFetch}  movie={movie} />;
       })}

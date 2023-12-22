@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { createUser } from "../../../utils/api/auth/createUser";
-import { NavLink } from "react-bootstrap";
-
+// import { NavLink } from "react-bootstrap";
+import './signUp.css'
+import { NavLink } from "react-router-dom";
 const SignUp = (props) => {
   const [user, setUser] = useState({
     name: "",
@@ -24,24 +25,25 @@ const SignUp = (props) => {
     }
   };
 
-  const handleUserSignUpClick = (event) => {
+  const handleUserSignUpClick = async (event) => {
     event.preventDefault();
-    // console.log("State Values", user);
-    const result=createUser(user)
-    // if(result){
+    
+    const result=await createUser(user)
+    if(result==true){
       alert('user created successfully,now please login')
-    // }else{
-    //   alert('something went wrong')
-    // }
+    }else{
+   
+      alert(result)
+    }
 
   };
 
   return (
-    <div>
-      <h1>Signup Page</h1>
-      <form onSubmit={handleUserSignUpClick}>
-        <div>
-          <label htmlFor="username">Name</label>
+    <div className="main-div-signup">
+      <div className="main-signup">
+        <form onSubmit={handleUserSignUpClick}>
+          <h1>Create Your account</h1>
+
           <input
             onChange={handleCredentialsChange}
             id="username"
@@ -51,9 +53,7 @@ const SignUp = (props) => {
             type="text"
             required
           />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
+
           <input
             onChange={handleCredentialsChange}
             id="email"
@@ -63,9 +63,7 @@ const SignUp = (props) => {
             type="email"
             required
           />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
+
           <input
             // value={user.password}
             onChange={handleCredentialsChange}
@@ -75,24 +73,29 @@ const SignUp = (props) => {
             type="password"
             required
           />
-        </div>
-        <div>
-          <select
-            defaultValue={"user"}
-            id="isadmin"
-            name="isadmin"
-            onChange={handleCredentialsChange}
-          >
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-          </select>
-        </div>
 
-        <button type="submit">Sign Up</button>
-      </form>
-      <button onClick={props.change}>
-        existing User?<NavLink>Login</NavLink>
-      </button>
+          <div>
+            <select
+              defaultValue={"user"}
+              id="isadmin"
+              name="isadmin"
+              onChange={handleCredentialsChange}
+            >
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+
+          <button type="submit">Sign Up</button>
+        </form>
+        {/* <button onClick={props.change}>
+        existing User?<a  className="login-btn">Login</a>
+      </button> */}
+
+        <NavLink onClick={props.change} style={{ color: "black" }}>
+          Already registered? Login
+        </NavLink>
+      </div>
     </div>
   );
 };

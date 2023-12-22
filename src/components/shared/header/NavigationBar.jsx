@@ -1,7 +1,10 @@
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+// import { Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink, Navigate } from 'react-router-dom';
 import { MovieList } from '../Movies/MovieList';
+
+import './navigationBar.css'
+import { Logo } from '../../../../public/assets';
 
 const NavigationBar = (props) => {
 
@@ -15,35 +18,45 @@ const NavigationBar = (props) => {
   const isadmin=localStorage.getItem('isadmin')==='true'?true:false;
   // const isLogin=localStorage.getItem('isLogin')=='true'?true:false;
   return (
-    <Navbar
-      sticky="top"
-      bg="black"
-      variant="dark"
-      color="white"
-      style={{ paddingLeft: "15px", marginLeft: "20px" }}
-    >
-      <Container className="mx-auto">
-        <Nav style={{ paddingLeft: "15px", marginLeft: "20px" }}>
-          {isadmin && (
-            <NavLink to="/movies" style={{ marginRight: "20px" }}>
-              Movies
-            </NavLink>
-          )}
-          {isadmin && (
-            <NavLink to="/dashboard" style={{ marginRight: "20px" }}>
-              DashBoard
-            </NavLink>
-          )}
-          {!isadmin && (
-            <Navigate to="/movies"  />
-          )}
+    <nav style={{ paddingLeft: "15px" }} className="main-navigation-bar">
+      <div className="home-dashboard-div">
+        <img src={Logo} alt='logo' height='20px' style={{marginRight:'20px',marginLeft:'20px'}}></img>
 
-          {/* {!isadmin && } */}
+        <p style={{display:'inline',marginRight:'60px'}}>Movie Application</p>
+        {isadmin && (
+          <NavLink
+            id="movies"
+            to="/movies"
+            style={{marginRight: "20px", textDecoration: "none" }}
+          >
+            Movies
+          </NavLink>
+        )}
+        {isadmin && (
+          <NavLink
+            id="dashboard"
+            to="/admin-panel"
+            style={{ marginRight: "20px", textDecoration: "none" }}
+          >
+            Admin-Panel
+          </NavLink>
+        )}
+        {!isadmin && (
+          <NavLink
+            to="/movies"
+            id="movies"
+            style={{ marginRight: "20px", textDecoration: "none" }}
+          >
+            Movies
+          </NavLink>
+        )}
+      </div>
 
-          <NavLink onClick={handleLogoutClick}>Logout</NavLink>
-        </Nav>
-      </Container>
-    </Navbar>
+      {/* {!isadmin && } */}
+      <div className="logout-div">
+        <NavLink onClick={handleLogoutClick} style={{textDecoration:'none'}}>Logout</NavLink>
+      </div>
+    </nav>
   );
 }
 

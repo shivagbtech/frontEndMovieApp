@@ -1,0 +1,113 @@
+.parent-movie-div {
+  display: flex;
+}
+
+.main-movie-card {
+  width: 100%;
+  height: 300px;
+  /* border-radius: 10px; */
+  /* border: 1px rgb(87, 79, 79) solid; */
+  /* background-color: #e6eae5; */
+  /* padding: auto; */
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  /* text-align: center; */
+  /* margin-right: 20px; */
+  /* overflow-y: hidden; */
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+
+}
+
+/* .rating-paragraph{
+  position: relative;
+  appearance: none;
+  color: transparent; */
+  /* width: auto; */
+  /* display: inline-block; */
+  /* vertical-align: baseline;
+} */
+
+/* .rating-paragraph::before {
+  --percent: calc(4.3/5*100%);
+  content: '★★★★★';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0,0,0,0.2);
+  background:
+    linear-gradient(90deg, gold var(--percent), rgba(0,0,0,0.2) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+.description-paragraph{
+  margin-top: 10px;
+  margin-left: 10px;
+  /* text-align: center; */
+}
+.main-movie-card:hover{
+    cursor: pointer;
+
+}
+
+.category-paragraph{
+  text-transform: capitalize;
+  /* margin-top: 10px; */
+  margin-left: 3px;
+}
+.title-headings{
+  text-transform: capitalize;
+  margin-top: 10px;
+  margin-left: 3px;
+  /* font-size: 30px; */
+}
+.img-card {
+  width: 300px;
+  height: 240px;
+  /* border-top-left-radius: 10px; */
+  /* border-top-right-radius: 10px; */
+  /* display: inline-block; */
+    /* overflow: hidden !important; 
+    transition: .3s ease-in-out */
+    /* background-size:100%;  
+    background-position: center center;
+    transition: .3s ease-in-out; */
+    overflow: hidden;
+}
+
+/* .img-card img {
+  width: 100%;
+  transition:  0.5s all ease-in-out;
+} */
+/* .img-card:hover img { */
+  /* z-index: 2; */
+  /* opacity: 0.6;
+    filter: alpha(opacity=30);*/
+    /* transform: scale(1.3); */
+    /*overflow: hidden; */
+    /* background-size:130%; */
+/* } */
+.delete-div-btn{
+  width: 100%;
+  margin-top: 10px;
+  /* text-align: center; */
+}
+
+.delete-movie-btn{
+    padding: 5px;
+    margin-left: 10px;
+
+    border-radius: 5px;
+}
+
+.delete-movie-btn:hover {
+    cursor: pointer;
+    color: red;
+    background-color: black;
+}
+
+.rating-paragraph{
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+

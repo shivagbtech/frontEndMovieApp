@@ -10,7 +10,7 @@ export const loginUser = async (user) => {
     return result.data;
   } catch (error) {
     console.log(error.response.data);
-    alert(error.response.data);
+    alert(error.response.data.message);
     return null;
   }
 };

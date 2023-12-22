@@ -1,0 +1,15 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    color: white;
+    
+}
+
+.navbar-div {
+    padding-bottom: 70px;
+}
+
+.app{
+    /* background-color: black; */
+    font-family: Arial, Helvetica, sans-serif;
+}

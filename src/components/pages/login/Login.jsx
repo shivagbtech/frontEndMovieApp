@@ -2,69 +2,78 @@
 import React, { useContext, useState } from "react";
 import { loginUser } from "../../../utils/api/auth/loginUser";
 import { AuthContext } from "../../../context/authContext";
-import { NavLink } from "react-bootstrap";
+
+import { NavLink, useNavigate } from "react-router-dom";
+
+import "./login.css";
+import { BgImg, LoginImg } from "../../../../public/assets";
 
 const Login = (props) => {
   const [user, setUser] = useState({ email: "", password: "" });
 
-  const authContext=useContext(AuthContext)
+  const authContext = useContext(AuthContext);
   const handleCredentialsChange = (event) => {
     const { name, value } = event.target;
-
-    
 
     setUser({ ...user, [name]: value });
   };
 
-  const handleUserLoginClick = async(event) => {
-    event.preventDefault()
+  const handleUserLoginClick = async (event) => {
+    event.preventDefault();
     // console.log(user);
-    const result=await loginUser(user)
+    const result = await loginUser(user);
 
-    if(result.token!==null && result.token!==undefined){
-
+    if (result.token !== null && result.token !== undefined) {
       console.log(result.token);
-      localStorage.setItem('token',result.token);
-      localStorage.setItem('isadmin',result.isadmin)
-      localStorage.setItem('isLogin','true');
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("isadmin", result.isadmin);
+      localStorage.setItem("isLogin", "true");
       // authContext.userLogin(result)
       // console.log(authContext.isLogin);
+
       props.userLoginnedNow();
     }
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleUserLoginClick}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            onChange={handleCredentialsChange}
-            id="email"
-            name="email"
-            placeholder="enter your email"
-            type="email"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            onChange={handleCredentialsChange}
-            id="password"
-            name="password"
-            placeholder="create password"
-            type="password"
-            required
-          />
-        </div>
+    <div className="main-div-login">
+      {/* <div className="left-side-login">
+        <img alt="image" src={LoginImg} ></img>
+        
+      </div>  */}
+      <div className="right-side-login">
+        <div className="main-login-page">
+          <form onSubmit={handleUserLoginClick}>
+            <h1>Login Page</h1>
 
-        <button type="submit">Login</button>
-      </form>
-      <button onClick={props.change}>
-        new User?<NavLink>Sign Up</NavLink>
-      </button>
+            <input
+              onChange={handleCredentialsChange}
+              id="email"
+              name="email"
+              placeholder="enter your email"
+              type="email"
+              required
+            />
+
+            <input
+              onChange={handleCredentialsChange}
+              id="password"
+              name="password"
+              placeholder="enter your password"
+              type="password"
+              required
+            />
+
+            <button type="submit">Login</button>
+          </form>
+          {/* <button onClick={props.change}>
+            new User?<a className="signup-btn">Sign Up</a>
+          </button> */}
+          <NavLink onClick={props.change} style={{color:'black'}}>
+            Not yet registered? Register Now
+          </NavLink>
+        </div>
+      </div>
     </div>
   );
 };
